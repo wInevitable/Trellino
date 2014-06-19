@@ -1,0 +1,29 @@
+<div id="back">
+  <a href="/#">Back</a>
+</div>
+
+<div id="board-title">
+  <%= board.escape('title') %>
+</div>
+
+<div id="board">
+  <% board.attributes.lists.sort('rank').forEach(function(list) { %>
+    <div id="list">
+      <div id="list-title">
+        <%= list.title %>
+      </div>
+    
+      <form id="add-card" data-id="<%= list.id %>">                
+        <input type="text" name="card[title]" id="title">
+        <br>
+        <input type="submit" value="Add Card" id="add-card">
+      </form>
+    
+      <ul id="cards">
+        <% list.cards.sort('rank').forEach(function(card) {%>
+            <li><%= card.title %></li>
+        <% }); %>
+      </ul>
+    </div>
+  <% }) %>
+</div>
